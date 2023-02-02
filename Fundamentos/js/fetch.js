@@ -1,4 +1,5 @@
 //fetch
+console.log("FETCH")
 
 fetch("https://pokeapi.co/api/v2/pokemon/") // fetch se usa para consumir datos de una api
 .then((res) => {
@@ -16,5 +17,17 @@ return res.json() // transformamos la respuesta a json
 
 .catch(error => console.log(error)) 
 
+console.log("ASYNC, AWAIT")
 //Conociendo async await
+const obtenerPokemon = async()=> //await debe de estar siempre dentro de una funcion async
+{
+try{
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon/"); // await: espera la respuesta de fetch
+  const data = await res.json();
+  console.log(data.results);
+}catch (error){
+    console.log(error)
+}
+}
 
+obtenerPokemon()
