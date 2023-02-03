@@ -21,12 +21,24 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+//CONFIGURACIÓN DE MIDDLEWARE (lo colocamos arriba para que cuando accedamos a la pagina principal vaya a public )
+app.use(express.static(__dirname + "/public"))
+
 app.get("/", (req, res)=>{
-    res.send("Mi respuesta desde express")
+    //console.log(__dirname) //ACCEDEMOS A LA RUTA EN LA QUE NOS ENCONTRAMOS
+    res.send("Mi respuesta desde express ACABA DE FUNCIONAR 45")
 })
+
+app.get("/servicios", (req, res)=>{
+    res.send("Estas en la página de servicios")
+})
+
+
 
 app.listen(port, ()=>{
     console.log("Servidor a su servicio en el puerto ", port)
 })
+
+//Min video 13.15
 
 //NO PUEDO UTILIZAR NODEMON COMPROBAR , MIN VID 4.41 (https://www.youtube.com/watch?v=VmH4tPbbDsM&list=PLPl81lqbj-4IEnmCXEJeEXPepr8gWtsl6&index=7)
