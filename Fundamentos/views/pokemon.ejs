@@ -1,35 +1,40 @@
-<%- include("template/cabecera", {tituloWeb: 'Inicio' }) %>
-
-    <div class="container">
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <% if (arrayPokemon.length > 0 ) { %>
-                    <% arrayPokemon.forEach( pokemon => { %>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-
-                    <% }) %>
-                <% } %>
-               
-            </tbody>
-        </table>
+<%- include("template/cabecera", {tituloWeb: 'Inicio'}) %>
 
 
-    </div>
+<div class="container">
 
-    <%- include("template/footer") %>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% if (arrayPokemon.length > 0) { %>
+                <% arrayPokemon.forEach(element => { %>
+                   
+                   <tr>
+                       <th scope="row"><%= element.id %> </th>
+                       <td><%= element.nombre %></td>
+                       <td><%= element.descripcion %></td>
+                       <td><%= element.accion %></td>
+                    </tr>
+                    
+                <% }) %>
+               <% } %>
+        </tbody>
+      </table>
+
+
+   
+</div>
+
+
+
+
+
+<%- include("template/footer") %>

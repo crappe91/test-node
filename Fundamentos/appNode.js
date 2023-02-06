@@ -18,21 +18,49 @@
 //instalamos express con npm i express para mayor comodidad
 
 const express = require("express");
+const bodyParser = require("body-parser")
 const app = express();
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+
+require('dotenv').config()
+
 const port = 3000;
+
+//Conexión a Base de datos
+
+const mongoose = require('mongoose');
+
+const user= "cursoNode"; 
+const password = "Lu1PRe7PwPqNE93X";
+const dbname= "DBPokemon"
+const uri = `mongodb+srv://cursoNode:${password}@cluster0.westfkq.mongodb.net/?retryWrites=true&w=majority`;
+mongoose.set('strictQuery', false) 
+mongoose.connect(uri , {useNewUrlParser: true, useUnifiedTopology: true})
+
+.then(()=> console.log('Base de datos conectada'))
+
+.catch(e => console.log(e))
+
+
+
+
 
 //Motor de plantillas (ejs)
 
+app.set('views', __dirname+'/views');
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views'); //indicamos donde se van a encontrar las vistas creadas
 
 
 
 //MIDDLEWARE (lo colocamos arriba para que cuando accedamos a la pagina principal vaya a public )
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/public"));
 
 //Rutas Web
-app.use('/', require('./router/rutasWeb'))
+app.use('/', require('./router/rutasWeb'));
+app.use('/pokemon', require('./router/Pokemon'));
 
 
 //Configuramos un middleware por si no encuentra la pagina que buscamos nos redirija a 404.html
